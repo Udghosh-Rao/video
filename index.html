@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture Library</title>
+  <meta name="description" content="Watch the full lecture series in one place. No account needed.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://img.youtube.com">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="logo" href="#/">Lecture Library</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="header-panel" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="header-panel" id="header-panel">
+        <nav aria-label="Main">
+          <a href="#/" id="nav-home">Home</a>
+          <a href="#/lectures" id="nav-all">All Lectures</a>
+        </nav>
+        <form class="search" role="search" id="search-form">
+          <svg class="search-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <label class="sr" for="q">Search lectures by title or number</label>
+          <input id="q" type="search" placeholder="Search lectures" autocomplete="off" enterkeyhint="search">
+          <button type="button" class="search-clear" id="q-clear" hidden aria-label="Clear search">&times;</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- Library view -->
+    <section id="view-library" class="wrap">
+      <div class="page-head">
+        <h1>Video Lecture Library</h1>
+        <p class="sub">Access all available lectures in one place.</p>
+        <p class="sub small" id="overall"></p>
+      </div>
+      <div id="resume-banner" class="resume" hidden></div>
+      <ul class="grid" id="grid"></ul>
+      <div class="empty" id="empty" hidden>
+        <h2>No lectures found</h2>
+        <p>Nothing matches &ldquo;<span id="empty-q"></span>&rdquo;. Try a lecture number or a different word.</p>
+        <button type="button" class="btn" id="empty-clear">Clear search</button>
+      </div>
+    </section>
+
+    <!-- Watch view -->
+    <section id="view-watch" class="wrap" hidden>
+      <a class="back" href="#/lectures">&lsaquo; All lectures</a>
+      <h1 id="lecture-title" class="lecture-title" tabindex="-1"></h1>
+      <div class="watch-layout">
+        <div class="player-col">
+          <div class="player-frame" id="player-frame">
+            <div id="player-host"><div id="yt-player"></div></div>
+            <div class="overlay" id="player-loading" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading player&hellip;</span></div>
+            <div class="overlay error" id="player-error" role="alert" hidden>
+              <p id="err-msg"></p>
+              <div class="err-actions">
+                <button type="button" class="btn" id="retry" hidden>Try again</button>
+                <a class="btn" id="err-yt" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+              </div>
+            </div>
+          </div>
+          <div class="controls">
+            <div class="nav-pair">
+              <button type="button" class="btn" id="prev">Previous lecture</button>
+              <button type="button" class="btn" id="next">Next lecture</button>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn btn-primary" id="resume" hidden></button>
+              <button type="button" class="btn" id="complete" aria-pressed="false">Mark as completed</button>
+              <a class="link" id="yt-link" target="_blank" rel="noopener noreferrer">Open on YouTube</a>
+            </div>
+          </div>
+          <p class="hint">Press play on the player to start. Playback never begins on its own, and your position is saved only in this browser.</p>
+        </div>
+        <aside class="playlist" aria-labelledby="pl-title">
+          <div class="pl-head"><h2 id="pl-title">Lectures</h2><span id="pl-count"></span></div>
+          <ul id="playlist"></ul>
+          <p class="pl-empty" id="pl-empty" hidden>No lectures match your search.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Videos are played by the official YouTube player, so YouTube&rsquo;s <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">Terms</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> apply once a lecture is opened.</p>
+      <p>This site has no accounts, collects no email addresses and runs no analytics. Progress is stored only in your own browser.</p>
+    </div>
+  </footer>
+
+  <div class="sr" id="live" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
