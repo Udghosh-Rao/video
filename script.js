@@ -141,12 +141,14 @@
     $('#player-error').hidden = !msg;
     if (msg) { $('#err-msg').textContent = msg; $('#retry').hidden = !canRetry; setLoading(false); }
   }
+  const EMBED_OFF = 'YouTube says this video is not allowed to play on other websites. The video owner must turn on "Allow embedding" in YouTube Studio (Content > the video > Show more > Allow embedding). Until then, use "Watch on YouTube".';
   const ERRORS = {
     2: 'YouTube reports that this video link is invalid.',
     5: 'The player ran into a playback problem. Try again, or watch on YouTube.',
     100: 'This video could not be found. It may have been removed or made private.',
-    101: 'The owner has turned off embedding for this video. You can still watch it on YouTube.',
-    150: 'The owner has turned off embedding for this video. You can still watch it on YouTube.'
+    101: EMBED_OFF,
+    150: EMBED_OFF,
+    153: 'YouTube could not verify this page. Open the site from its web address (http/https, for example your GitHub Pages link) instead of opening the HTML file directly from your computer.'
   };
 
   function savePos() {
@@ -186,7 +188,7 @@
           stopTick();
           if (e.data === S.PAUSED || e.data === S.ENDED) { savePos(); if (e.data === S.ENDED) { store.pos[cuedId] = 0; save(); } renderControls(); }
         },
-        onError: (e) => setError(ERRORS[e.data] || 'This video could not be played here. You can watch it on YouTube instead.', false)
+        onError: (e) => setError((ERRORS[e.data] || 'This video could not be played here. You can watch it on YouTube instead.') + ' (YouTube error ' + e.data + ')', false)
       }
     });
     clearTimeout(readyTimer);
