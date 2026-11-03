@@ -6,12 +6,14 @@
   // ---------- Content (edit titles here) ----------
   const VIDEO_IDS = [
     'XhdqMAk9cL4', 'YKQppyW-pG8', 'KLVqzlqxLm0', 'D9s_jmEt5_A', 'K_his24kTWY',
-    'oOcAh5EON5w', 'tKxJz07cCJI', 'OJute6x47cg', '8tIep96rBP0', '1YhzlR240lU'
+    'oOcAh5EON5w', 'tKxJz07cCJI', 'OJute6x47cg', '8tIep96rBP0', '1YhzlR240lU',
+    'MeD2ZDx3mmM', 'O1XgOdP5KJk', '4EfwNpnv6wk', '2EJumqpMxvM'
   ];
   // Placeholder titles: replace each string with the real lecture title.
   const TITLES = [
     'Lecture 1', 'Lecture 2', 'Lecture 3', 'Lecture 4', 'Lecture 5',
-    'Lecture 6', 'Lecture 7', 'Lecture 8', 'Lecture 9', 'Lecture 10'
+    'Lecture 6', 'Lecture 7', 'Lecture 8', 'Lecture 9', 'Lecture 10',
+    'Lecture 11', 'Lecture 12', 'Lecture 13', 'Lecture 14'
   ];
   const LECTURES = VIDEO_IDS.map((id, i) => ({ n: i + 1, id, title: TITLES[i] || 'Lecture ' + (i + 1) }));
 
